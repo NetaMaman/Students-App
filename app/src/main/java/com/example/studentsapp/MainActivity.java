@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -53,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    Log.d("TAG", "row click "+pos);
+                }
+            });
+
         }
 
         public void bind(Student st, int pos) {
@@ -69,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         @NonNull
         @Override
         public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { //create a row view, for the first rows
-           View view = getLayoutInflater().inflate(R.layout.student_list_row, null); //if we want to put it somewhere
+           View view = getLayoutInflater().inflate(R.layout.student_list_row, null); //if we want to put it somewhere, (parent,false)
 
             return new StudentViewHolder(view);
         }
