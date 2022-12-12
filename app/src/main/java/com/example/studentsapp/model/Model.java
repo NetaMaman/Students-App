@@ -11,7 +11,16 @@ public class Model { //singleton pattern
 
     private Model(){
         for (int i = 0; i < 20; i++) {
-            addStudent(new Student("name " + i, "id:"+i, "", "", "g", false));
+//            addStudent(new Student("name " + i, "id:"+i, "", "", "g", false));
+            Student s= new Student();
+            s.setAddress("");
+            s.setCb(false);
+            s.setId("id:"+i);
+            s.setPhone("");
+            s.setAvatarUrl("");
+            s.setName("name " + i);
+            addStudent(s);
+
         }
 
     }

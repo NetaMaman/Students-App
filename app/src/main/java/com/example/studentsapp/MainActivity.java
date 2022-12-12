@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.example.studentsapp.model.Model;
 import com.example.studentsapp.model.Student;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,25 +59,38 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int pos = (int) cb.getTag();
                     Student st = data.get(pos);
-                    st.cb= cb.isChecked();
+//                    st.cb= cb.isChecked();
+                    st.setCb(cb.isChecked());
+
                 }
             });
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int pos = getAdapterPosition();
+
+            itemView.setOnClickListener(v->{int pos = getAdapterPosition();
 //                    Log.d("TAG", "row click "+pos);
-                    listener.onItemClick(pos);
-                }
-            });
+                listener.onItemClick(pos);
+                Intent intent= new Intent(MainActivity.this, StudentDetails.class);
+                intent.putExtra("student", (Serializable) data.get(pos)); //where user is an instance of User object
+                startActivity(intent);});
+
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    int pos = getAdapterPosition();
+////                    Log.d("TAG", "row click "+pos);
+//                    listener.onItemClick(pos);
+//                    Intent intent= new Intent(MainActivity.this, StudentDetails.class);
+//                    intent.putExtra("student", (Serializable) data.get(pos)); //where user is an instance of User object
+//                    startActivity(intent);
+//                }
+//            });
 
         }
 
         public void bind(Student st, int pos) {
-            nameTv.setText(st.name);
-            idTv.setText(st.id);
-            cb.setChecked(st.cb);
+            nameTv.setText(st.getName());
+            idTv.setText(st.getId());
+            cb.setChecked(st.getCb());
             cb.setTag(pos);
         }
     }
