@@ -30,8 +30,15 @@ public class MainActivity extends AppCompatActivity {
         list.setHasFixedSize(true);
 
         list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(new StudentRecyclerAdapter());
+        StudentRecyclerAdapter adapter= new StudentRecyclerAdapter();
+        list.setAdapter(adapter);
 
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                Log.d("TAG", "Row was clicked " +pos);
+            }
+        }); //our func
 
     }
 
@@ -39,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         TextView nameTv;
         TextView idTv;
         CheckBox cb;
-        public StudentViewHolder(@NonNull View itemView) { //save the row view and the references to all the elements inside of them
+        public StudentViewHolder(@NonNull View itemView, OnItemClickListener listener) { //save the row view and the references to all the elements inside of them
             super(itemView);
 
             nameTv = itemView.findViewById(R.id.mainActivity_name_tv);
@@ -58,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
-                    Log.d("TAG", "row click "+pos);
+//                    Log.d("TAG", "row click "+pos);
+                    listener.onItemClick(pos);
                 }
             });
 
@@ -72,15 +80,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentViewHolder>{
+    public interface OnItemClickListener{
+        void onItemClick(int pos);
+    }
 
+    class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentViewHolder>{
+        OnItemClickListener listener;
+        void setOnItemClickListener(OnItemClickListener listener){
+            this.listener= listener;
+        }
 
         @NonNull
         @Override
         public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { //create a row view, for the first rows
            View view = getLayoutInflater().inflate(R.layout.student_list_row, null); //if we want to put it somewhere, (parent,false)
 
-            return new StudentViewHolder(view);
+            return new StudentViewHolder(view, listener);
         }
 
         @Override
