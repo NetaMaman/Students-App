@@ -13,10 +13,10 @@ public class Model { //singleton pattern
         for (int i = 0; i < 20; i++) {
 //            addStudent(new Student("name " + i, "id:"+i, "", "", "g", false));
             Student s= new Student();
-            s.setAddress("");
+            s.setAddress("address");
             s.setCb(false);
             s.setId("id:"+i);
-            s.setPhone("");
+            s.setPhone("050");
             s.setAvatarUrl("");
             s.setName("name " + i);
             addStudent(s);
