@@ -10,18 +10,19 @@
         android:id="@+id/mainActivity_add_student_btn"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="330dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainActivity_studentsrecycler_list"
-        android:layout_width="409dp"
-        android:layout_height="659dp"
-        app:layout_constraintBottom_toTopOf="@+id/mainActivity_add_student_btn"
+        android:layout_width="411dp"
+        android:layout_height="605dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
