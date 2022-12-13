@@ -65,44 +65,40 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/edit_add_student_name_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.691"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/edit_add_student_id_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
         tools:layout_editor_absoluteX="139dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/edit_add_student_phone_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
         tools:layout_editor_absoluteX="139dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/edit_add_student_address_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
         tools:layout_editor_absoluteX="139dp" />
 
@@ -110,8 +106,10 @@
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="CheckBox"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:text="checked"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
