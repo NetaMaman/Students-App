@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="CANCEL">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="205dp"
+        android:layout_height="248dp"
+        app:srcCompat="@drawable/student_avatar"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="88dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="361dp" />
+
+    <EditText
+        android:id="@+id/edit_add_student_phone_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edit_add_student_address_et"
+        tools:layout_editor_absoluteY="460dp" />
+
+    <EditText
+        android:id="@+id/edit_add_student_name_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edit_add_student_id_et"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="102dp"
+        android:layout_height="33dp"
+        android:text="ID:"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        tools:layout_editor_absoluteY="412dp" />
+
+    <EditText
+        android:id="@+id/edit_add_student_address_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="142dp"
+        tools:layout_editor_absoluteY="518dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="checked"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        tools:layout_editor_absoluteY="577dp" />
+
+    <EditText
+        android:id="@+id/edit_add_student_id_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edit_add_student_phone_et"
+        tools:layout_editor_absoluteY="400dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Address:"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        tools:layout_editor_absoluteY="529dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone:"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        tools:layout_editor_absoluteY="471dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="187dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="CANCEL"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="187dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="SAVE"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

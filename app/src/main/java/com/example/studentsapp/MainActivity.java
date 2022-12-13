@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     List<Student> data;
+    Button add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         data= Model.instance().getAllStudents();
         RecyclerView list = findViewById(R.id.mainActivity_studentsrecycler_list);
+        add= findViewById(R.id.mainActivity_add_student_btn);
         list.setHasFixedSize(true);
 
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("TAG", "Row was clicked " +pos);
             }
         }); //our func
+
+
+
 
     }
 
@@ -59,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int pos = (int) cb.getTag();
                     Student st = data.get(pos);
-//                    st.cb= cb.isChecked();
                     st.setCb(cb.isChecked());
 
                 }
@@ -121,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-//            return data.size();
             return data.size();
         }
     }
