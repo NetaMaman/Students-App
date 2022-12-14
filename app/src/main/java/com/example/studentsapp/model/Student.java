@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Student implements Serializable {
 
-    //public??
     private String name;
     private String id;
     private String phone;
