@@ -29,12 +29,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        data= Model.instance().getAllStudents();
         RecyclerView list = findViewById(R.id.mainActivity_studentsrecycler_list);
-        add= findViewById(R.id.mainActivity_add_student_btn);
         list.setHasFixedSize(true);
-
         list.setLayoutManager(new LinearLayoutManager(this));
+
+        data= Model.instance().getAllStudents();
+
+        add= findViewById(R.id.mainActivity_add_student_btn);
+
         StudentRecyclerAdapter adapter= new StudentRecyclerAdapter();
         list.setAdapter(adapter);
 
@@ -59,10 +61,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     class StudentViewHolder extends RecyclerView.ViewHolder{
+        public OnItemClickListener listener;
         TextView nameTv;
         TextView idTv;
         CheckBox cb;
-        public StudentViewHolder(@NonNull View itemView, OnItemClickListener listener) { //save the row view and the references to all the elements inside of them
+        int position;
+        public StudentViewHolder(@NonNull View itemView) { //save the row view and the references to all the elements inside of them
             super(itemView);
             nameTv = itemView.findViewById(R.id.mainActivity_name_tv);
             idTv = itemView.findViewById(R.id.mainActivity_id_tv);
@@ -87,10 +91,9 @@ public class MainActivity extends AppCompatActivity {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int pos = getAdapterPosition();
-                    listener.onItemClick(pos);
+                    listener.onItemClick(position);
                     Intent intent= new Intent(MainActivity.this, StudentDetails.class);
-                    intent.putExtra("student", (Serializable) data.get(pos)); //where user is an instance of User object
+                    intent.putExtra("student", (Serializable) data.get(position)); //where user is an instance of User object
                     startActivity(intent);
                 }
             });
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void bind(Student st, int pos) {
+            this.position=pos;
             nameTv.setText(st.getName());
             idTv.setText(st.getId());
             cb.setChecked(st.getCb());
@@ -119,7 +123,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { //create a row view, for the first rows
            View view = getLayoutInflater().inflate(R.layout.student_list_row, null); //if we want to put it somewhere, (parent,false)
-            return new StudentViewHolder(view, listener);
+            StudentViewHolder holder= new StudentViewHolder(view);
+            holder.listener=listener;
+            return holder;
         }
 
         @Override

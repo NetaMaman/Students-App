@@ -30,6 +30,11 @@ public class StudentDetails extends AppCompatActivity {
             TextView phone= findViewById(R.id.studentDetails_phone_tv);
             TextView address= findViewById(R.id.studentDetails_address_tv);
             CheckBox cb= findViewById(R.id.studentDetails_cb);
+            name.setText(student.getName());
+            id.setText(student.getId());
+            phone.setText(student.getPhone());
+            address.setText(student.getAddress());
+            cb.setChecked(student.getCb());
             btn = findViewById(R.id.studentDetails_edit_btn);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -39,11 +44,7 @@ public class StudentDetails extends AppCompatActivity {
                 }
             });
 
-            name.setText(student.getName());
-            id.setText(student.getId());
-            phone.setText(student.getPhone());
-            address.setText(student.getAddress());
-            cb.setChecked(student.getCb());
+
 
 
         }
