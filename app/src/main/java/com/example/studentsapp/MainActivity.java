@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<Student> data;
     Button add;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
     }
 
     class StudentViewHolder extends RecyclerView.ViewHolder{
@@ -81,19 +79,13 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-//            itemView.setOnClickListener(v->{int pos = getAdapterPosition();
-////                    Log.d("TAG", "row click "+pos);
-//                listener.onItemClick(pos);
-//                Intent intent= new Intent(MainActivity.this, StudentDetails.class);
-//                intent.putExtra("student", (Serializable) data.get(pos)); //where user is an instance of User object
-//                startActivity(intent);});
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    position= getAdapterPosition();
                     listener.onItemClick(position);
                     Intent intent= new Intent(MainActivity.this, StudentDetails.class);
-                    intent.putExtra("student", (Serializable) data.get(position)); //where user is an instance of User object
+                    intent.putExtra("position", position); //where user is an instance of User object
                     startActivity(intent);
                 }
             });

@@ -10,8 +10,8 @@ public class Model { //singleton pattern
     static public Model instance(){return _instance;}
 
     private Model(){
-        for (int i = 0; i < 20; i++) {
-//            addStudent(new Student("name " + i, "id:"+i, "", "", "g", false));
+        for (int i = 0; i < 1; i++) {
+//
             Student s= new Student();
             s.setAddress("address");
             s.setCb(false);
@@ -35,4 +35,6 @@ public class Model { //singleton pattern
     public void addStudent(Student st){
         data.add(st);
     }
+
+    public void deleteStudent(int pos){ data.remove(pos);}
 }
