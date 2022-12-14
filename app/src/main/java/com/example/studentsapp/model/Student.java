@@ -3,7 +3,6 @@ package com.example.studentsapp.model;
 import java.io.Serializable;
 
 public class Student implements Serializable {
-    //need getters and setters
 
     //public??
     private String name;
@@ -14,14 +13,6 @@ public class Student implements Serializable {
     private Boolean cb;
 
 
-//    public Student(String name, String id, String phone, String address, String avatarUrl, Boolean cb) {
-//        this.name = name;
-//        this.id = id;
-//        this.phone = phone;
-//        this.address = address;
-//        this.avatarUrl = avatarUrl;
-//        this.cb = cb;
-//    }
 
     public String getName() {
         return name;
