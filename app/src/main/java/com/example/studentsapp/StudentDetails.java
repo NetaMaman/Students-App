@@ -1,7 +1,9 @@
 package com.example.studentsapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,56 +19,71 @@ import java.io.Serializable;
 import java.util.List;
 
 public class StudentDetails extends AppCompatActivity {
-    List<Student> data;
-    Button btn;
+    List<Student> data=Model.instance().getAllStudents();
+    Student student;
+    Button btn,back;
     TextView name,id, phone, address;
     CheckBox cb;
     int position;
+    int REQUEST_CODE=1;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_details);
-        data= Model.instance().getAllStudents();
+
         position=(int)getIntent().getSerializableExtra("position");
-        Student student = data.get(position);
+        student = data.get(position);
         Log.d( "TAG" ,student.getName());
 
         name= findViewById(R.id.studentDetails_name_tv);
-        name.setText(student.getName());
-
         id= findViewById(R.id.studentDetails_id_tv);
-        id.setText(student.getId());
-
         phone= findViewById(R.id.studentDetails_phone_tv);
-        phone.setText(student.getPhone());
-
         address= findViewById(R.id.studentDetails_address_tv);
-        address.setText(student.getAddress());
-
         cb= findViewById(R.id.studentDetails_cb);
-        cb.setChecked(student.getCb());
-
+        back=findViewById(R.id.studentDetails_back_Btn);
         btn = findViewById(R.id.studentDetails_edit_btn);
+
+        bind(student);
         btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent= new Intent(StudentDetails.this, EditStudent.class);
                     intent.putExtra("position", position);
-                    startActivity(intent);
+                    startActivityForResult(intent, REQUEST_CODE);
                 }
             });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String result = data.getStringExtra("result");
+        if(result.equals("delete")) {
+            finish();
+        }
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Student s= data.get(position);
+    public void bind(Student s){
         name.setText(s.getName());
         id.setText(s.getId());
         phone.setText(s.getPhone());
         address.setText(s.getAddress());
         cb.setChecked(s.getCb());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bind(student);
+
     }
 }

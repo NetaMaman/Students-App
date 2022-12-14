@@ -2,6 +2,8 @@ package com.example.studentsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +22,7 @@ public class EditStudent extends AppCompatActivity {
     TextView name, studentId, phone, address;
     CheckBox cb;
     List<Student> data;
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +60,13 @@ public class EditStudent extends AppCompatActivity {
             }
         });
 
-//        deleteBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        deleteBtn.setOnClickListener(view-> {
+                Model.instance().deleteStudent(position);
+                Intent intent = new Intent();
+                intent.putExtra("result", "delete");
+                setResult(RESULT_OK,intent);
+                finish();
+        });
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +76,10 @@ public class EditStudent extends AppCompatActivity {
                 data.get(position).setPhone(phone.getText().toString());
                 data.get(position).setAddress(address.getText().toString());
                 data.get(position).setCb(cb.isChecked());
-                Log.d("TAG", "student after edit" + data.get(position));
+
+                Intent intent=new Intent();
+                intent.putExtra("result", "save");
+                setResult(RESULT_OK,intent);
                 finish();
             }
         });

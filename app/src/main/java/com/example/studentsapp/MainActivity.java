@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<Student> data;
     Button add;
+    StudentRecyclerAdapter adapter;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         add= findViewById(R.id.mainActivity_add_student_btn);
 
-        StudentRecyclerAdapter adapter= new StudentRecyclerAdapter();
+        adapter= new StudentRecyclerAdapter();
         list.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new OnItemClickListener() {
@@ -130,5 +131,11 @@ public class MainActivity extends AppCompatActivity {
         public int getItemCount() {
             return data.size();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.notifyDataSetChanged();
     }
 }
